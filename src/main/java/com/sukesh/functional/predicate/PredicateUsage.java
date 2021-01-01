@@ -21,6 +21,7 @@ public class PredicateUsage {
 
         //Java 8 way
         Predicate<String> pred = s -> s.contains("and");
+
         LOGGER.info("Contains 'and' ? : " + pred.test("Jack and Jill"));
         LOGGER.info("Contains 'and' ? : " + pred.test("Jack or Jill"));
     }
