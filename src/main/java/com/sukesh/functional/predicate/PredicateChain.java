@@ -10,7 +10,12 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class PredicateChain {
-    public static final Logger LOGGER = LoggerFactory.getLogger(PredicateChain.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PredicateChain.class);
+    private static final String MESSAGE_PREFIX = "The String ";
+    private static final String IS_STRING = " is ";
+    private static final String WITH_IN_LIMITS_MSG = "with in limits";
+    private static final String OUT_OF_LIMITS_MSG = "not with in limits";
+
 
     public static void main(String[] args) {
         // Simple predicates
@@ -23,21 +28,25 @@ public class PredicateChain {
         //Get all the strings from the list
         List<String> stringList = buildStringList();
 
-        // Log message consumer.Takes a String argument and logs it
-        Consumer<String> writeLogMessage = s -> LOGGER.info(s);
+        stringList.forEach(stringValue -> buildMessageFormatter(stringValue, p3));
+    }
 
-        stringList.forEach(stringValue -> {
-            StringBuilder builder = new StringBuilder("The string ");
-            builder.append(stringValue)
-                    .append(" is ")
-                    .append(p3.test(stringValue) ? "with in limits" : "not with in limits");
-            writeLogMessage.accept(builder.toString());
-        });
+    private static Consumer<String> getWriteLogConsumer() {
+        Consumer<String> writeLogMessage = s -> LOGGER.info(s);
+        return writeLogMessage;
     }
 
     private static List<String> buildStringList() {
         return Arrays.asList("Hello how are you", "Good Morning", "Happy New Yaer", "Coffee", "Hello", "Where", "What");
     }
 
+    private static void buildMessageFormatter(String stringValue, Predicate<String> predicate) {
+        Consumer<String> writeLogMessage = getWriteLogConsumer();
+        StringBuilder builder = new StringBuilder(MESSAGE_PREFIX);
+        builder.append(stringValue)
+                .append(IS_STRING)
+                .append(predicate.test(stringValue) ? WITH_IN_LIMITS_MSG : OUT_OF_LIMITS_MSG);
+        writeLogMessage.accept(builder.toString());
+    }
 
 }
