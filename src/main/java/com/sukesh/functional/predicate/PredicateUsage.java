@@ -9,7 +9,6 @@ public class PredicateUsage {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(PredicateUsage.class);
 
-
     public static void main(String[] args) {
         //Java 7 way
         Predicate<String> p = new Predicate<String>() {
