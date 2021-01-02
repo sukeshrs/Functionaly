@@ -2,6 +2,7 @@ package com.sukesh.functional;
 
 public class Person {
 
+
     private int age;
     private String firstName;
     private String lastName;
@@ -36,4 +37,12 @@ public class Person {
         this.lastName = lastName;
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }
