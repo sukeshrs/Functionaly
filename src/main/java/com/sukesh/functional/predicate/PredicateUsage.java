@@ -19,9 +19,9 @@ public class PredicateUsage {
         };
 
         //Java 8 way
-        Predicate<String> pred = s -> s.contains("and");
+        Predicate<String> predicate = s -> s.contains("and");
 
-        LOGGER.info("Contains 'and' ? : " + pred.test("Jack and Jill"));
-        LOGGER.info("Contains 'and' ? : " + pred.test("Jack or Jill"));
+        LOGGER.info("Contains 'and' ? : " + predicate.test("Jack and Jill"));
+        LOGGER.info("Contains 'and' ? : " + predicate.test("Jack or Jill"));
     }
 }
