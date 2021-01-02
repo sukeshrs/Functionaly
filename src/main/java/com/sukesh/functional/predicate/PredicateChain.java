@@ -39,7 +39,7 @@ public class PredicateChain {
     }
 
     private static List<String> buildStringList() {
-        return Arrays.asList("Hello how are you", "Good Morning", "Happy New Yaer", "Coffee", "Hello", "Where", "What");
+        return Arrays.asList("Hello how are you", "Good Morning", "Happy New Year", "Coffee", "Hello", "Where", "What");
     }
 
     private static void buildMessageFormatter(String stringValue, Predicate<String> conditions) {
