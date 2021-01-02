@@ -1,6 +1,7 @@
 package com.sukesh.functional.collection;
 
 import com.sukesh.functional.Person;
+import com.sukesh.functional.util.CommonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,15 +11,8 @@ public class ListApi {
     private static final Logger LOGGER = LoggerFactory.getLogger(ListApi.class);
 
     public static void main(String[] args) {
-        Person p1 = new Person(50, "John", "Doe");
-        Person p2 = new Person(21, "john", "Deen");
-        Person p3 = new Person(7, "scott", "Smith");
-        Person p4 = new Person(78, "Gabriel", "Raman");
-        Person p5 = new Person(43, "Christian", "Doe");
-        Person p6 = new Person(12, "ustad", "Khan");
-        Person p7 = new Person(21, "Jeff", "Gates");
 
-        List<Person> people = new LinkedList<>(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
+        List<Person> people = CommonUtil.returnPersonList();
         //removeIf takes in a Predicate and removes the entries of the predicate matches
         people.removeIf(person -> person.getAge() < 18);
 
@@ -43,5 +37,9 @@ public class ListApi {
         );
 
         LOGGER.info("After comparator chaining {}", people);
+
+        //Using collections.sort
+        Collections.sort(people , Comparator.comparing(person -> person.getAge()));
+        Collections.sort(people , (a,b) -> Integer.compare(a.getAge() , b.getAge()));
     }
 }
