@@ -6,6 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
 
 public class MapReduce {
     private static final Logger LOGGER = LoggerFactory.getLogger(MapReduce.class);
@@ -39,5 +42,11 @@ public class MapReduce {
                 .noneMatch(person -> person.getAge()>20);
         LOGGER.info("No matches found above 20 years : {}", noMatchesFound);
 
+        IntStream intStream = ThreadLocalRandom.current().ints();
+        intStream.limit(1000)
+                .filter(integerValue -> integerValue >0)
+                .forEach(System.out::println);
+//        //Optional
+//        Optional<Person> opt = people.stream().findFirst(p -> p);
     }
 }
