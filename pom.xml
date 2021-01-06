@@ -22,12 +22,15 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-
+        <!-- Logging implementation - logback git gi-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
+        <!--  Pulls in Junit jupiter dependencies for unit tests.
+              junit-jupiter-api ,junit-jupiter-params and junit-jupiter-engine are pulled
+              as part of this . Execute 'mvn dependency:tree' command for more details -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
