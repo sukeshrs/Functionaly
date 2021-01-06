@@ -48,5 +48,28 @@ public class MapReduce {
                 .forEach(System.out::println);
 //        //Optional
 //        Optional<Person> opt = people.stream().findFirst(p -> p);
+
+
+        Optional<String> optional = Optional.of("Sukesh");
+        LOGGER.info("isPresent {}" , optional.isPresent());
+
+
+        Optional<String> optional1 = Optional.ofNullable(null);
+        LOGGER.info("isPresent {}" , optional1.isPresent());
+
+
+        Optional<String> opt = Optional.of("yes");
+        opt.ifPresent(name ->  LOGGER.info("length  {}" ,name.length()));
+
+        // Getting the value of optional using get
+        Optional<String> optionalGet = Optional.of("Man");
+        String name = optionalGet.get();
+        LOGGER.info("name {}" , name);
+        //Group by
+        //Reference : https://www.baeldung.com/java-groupingby-collector
+
+        //Read a file as a stream
+        //Assume each line in the file contains comma seperated value and the value before the first comma is the key
+
     }
 }
