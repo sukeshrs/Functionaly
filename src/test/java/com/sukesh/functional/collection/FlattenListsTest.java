@@ -55,4 +55,19 @@ public class FlattenListsTest {
         assertNotNull(list);
         assertEquals(expectedOutput , list);
     }
+
+    @Test
+    void itShouldReturnAnEmptyListWhenNullIsPassed(){
+        List<String> list =  flattenLists.reduceToOneDimention(null);
+        assertNotNull(list);
+    }
+
+    @Test
+    void itShouldReduceToAOneDimentionalList(){
+        List<String> firstList = Arrays.asList("hello" ,"how" , "are" , "you");
+        List<String> secondList = Arrays.asList("when" , "is" , "the" , "next" , "class");
+        List<String> expectedOutput = Arrays.asList("hello" ,"how" , "are" , "you" ,"when" , "is" , "the" , "next" , "class");
+        List<String> list =  flattenLists.reduceToOneDimention(Arrays.asList(firstList,secondList));
+        assertEquals(expectedOutput, list);
+    }
 }
