@@ -10,7 +10,7 @@ public class IterableUsage {
         List<String> allowList = Arrays.asList("1987", "2008");
         List<String> list = buildStringList();
         // Removes from the list if the condition matches
-        list.removeIf(value -> allowList.contains(value.toLowerCase(Locale.ROOT)));
+        list.removeIf(value -> !allowList.contains(value.toLowerCase(Locale.ROOT)));
         System.out.println("List after removing some of the worst years in Financial history : " + list );
     }
 
