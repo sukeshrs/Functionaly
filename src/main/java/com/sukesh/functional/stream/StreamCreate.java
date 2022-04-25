@@ -23,5 +23,6 @@ public class StreamCreate {
 
         IntStream characters = "hello".chars();
         characters.forEach(System.out::println);
+
     }
 }
