@@ -1,14 +1,12 @@
 package com.sukesh.functional.algorithms.tree;
 
-import com.sukesh.functional.algorithms.search.BinarySearch;
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreateBinaryTree {
     private BinaryTree classToTest = new BinaryTree();
@@ -16,15 +14,15 @@ public class CreateBinaryTree {
     Node node;
 
     @Before
-    public void setUp(){
+    public void setUp() {
 
 
     }
 
     @Test
-    public void itPrintsTheBinaryTree(){
+    public void itPrintsTheBinaryTree() {
         Node node = createNode();
-       // System.out.println(node);
+        // System.out.println(node);
     }
 
     private Node createNode() {
@@ -43,20 +41,28 @@ public class CreateBinaryTree {
     }
 
     @Test
-    public void itTestsTheMaximumHeight(){
+    public void itTestsTheMaximumHeight() {
         Node node = createNode();
-       // System.out.println(node);
+        // System.out.println(node);
         int depth = classToTest.findMaxDepth(node);
         System.out.println(depth);
     }
 
 
     @Test
-    public void itTestsTheLevelOrderReturn(){
+    public void itTestsTheFirstLevelInLevelOrder() {
         Node node = createNode();
         List expected = Arrays.asList(1);
-        classToTest.levelOrder(node);
-        //assertEquals(expected , test.get(0));
+        List test = classToTest.levelOrder(node);
+        assertEquals(expected , test.get(0));
+    }
+
+    @Test
+    public void itTestsTheSecondLevelInLevelOrder() {
+        Node node = createNode();
+        List expected = Arrays.asList(2,3);
+        List test = classToTest.levelOrder(node);
+        assertEquals(expected , test.get(1));
     }
 
 
