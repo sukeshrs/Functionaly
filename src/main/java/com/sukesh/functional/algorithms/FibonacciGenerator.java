@@ -1,9 +1,7 @@
 package com.sukesh.functional.algorithms;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,7 +16,7 @@ public class FibonacciGenerator {
             for(int i=0 ;i <value.intValue(); i ++){
                 sum = a +b ;
                 a = b;
-                b = sum ;
+                b = sum;
                 System.out.println(b);
             }
         }
