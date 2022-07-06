@@ -29,6 +29,12 @@ public class PalindromeTest {
     }
 
     @Test
+    void itTestsIfReversibleStringIsPalindromeWhenThereAreSpaces(){
+        boolean isPalindrome = uut.isPalindrome("abb a");
+        assertTrue(isPalindrome);
+    }
+
+    @Test
     void itTestsIfReversibleStringIsPalindromeWhenThereAreCapitalLetters(){
         boolean isPalindrome = uut.isPalindrome("abBa");
         assertTrue(isPalindrome);
@@ -38,5 +44,23 @@ public class PalindromeTest {
     void itTestsIfNonStringIsNotPalindrome(){
         boolean isPalindrome = uut.isPalindrome("abcd");
         assertFalse(isPalindrome);
+    }
+
+    @Test
+    void itTestsIfTheStringIsPalindromeUsingStreams(){
+        boolean isPalindrome = uut.isPalindromeUsingStreams(null);
+        assertFalse(isPalindrome);
+    }
+
+    @Test
+    void itTestsIfReversibleStringIsPalindromeUsingStreams(){
+        boolean isPalindrome = uut.isPalindromeUsingStreams("abba");
+        assertTrue(isPalindrome);
+    }
+
+    @Test
+    void itTestsIfReversibleStringIsPalindromeUsingStreams_WhenThereAreSpacesInTheString(){
+        boolean isPalindrome = uut.isPalindromeUsingStreams("abb a");
+        assertTrue(isPalindrome);
     }
 }
