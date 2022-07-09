@@ -22,7 +22,7 @@ public class ProductService {
         try {
            // latch.await();
             // If the threads does not complete by 3 seconds the program will conitnue after 3 seconds
-            latch.await(3, TimeUnit.SECONDS);
+            latch.await(300, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -51,7 +51,7 @@ public class ProductService {
             Random random = new Random();
             random.nextInt();
             try {
-                Thread.sleep(4);
+                Thread.sleep(400);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

@@ -1,6 +1,6 @@
 package com.sukesh.functional.threads.countdownlatch;
 
-import com.sukesh.functional.threads.scatter.ProductService;
+import com.sukesh.functional.threads.scatter.countdownlatch.ProductService;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
