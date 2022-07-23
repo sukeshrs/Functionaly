@@ -60,7 +60,7 @@ public class SimpleMap<K,V> {
     }
 
     private int getHash(K key) {
-       return (key.hashCode() & Integer.MAX_VALUE)/ CAPACITY;
+       return (key.hashCode() ^ Integer.MAX_VALUE)/ CAPACITY;
     }
 
     public class Enrty<K,V>{

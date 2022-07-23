@@ -8,6 +8,9 @@ public class Palindrome {
         if(value == null || "".equals(value)){
             return false;
         }
+
+        value.replaceAll("\\s+","");
+
         value =  value.replaceAll("\\s+", "").toLowerCase();
         StringBuilder builder = new StringBuilder(value);
         String reverse = builder.reverse().toString();

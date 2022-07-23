@@ -1,50 +1,48 @@
-package com.sukesh.functional.threads.scatter.countdownlatch;
+package com.sukesh.functional.threads.scatter.completablefuture;
 
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProductService {
-
     AtomicInteger threadNumber = new AtomicInteger();
-    ExecutorService service = Executors.newFixedThreadPool(3);
-    CountDownLatch latch = new CountDownLatch(3);
 
 
     public Set<Integer> getProductPricing(){
         Set<Integer> prices = new HashSet<>();
-        service.submit(new Task("url1" , "aws" , prices ,latch));
-        service.submit(new Task("url2", "gcp" , prices , latch));
-        service.submit(new Task("url3", "azure" , prices , latch));
-        //Wait for the latch to count down to Zero
+        CompletableFuture<Void> future = CompletableFuture.runAsync(new Task("url1","id1",prices));
+        CompletableFuture<Void> future1 = CompletableFuture.runAsync(new Task("url2","id2",prices));
+        CompletableFuture<Void> future2 = CompletableFuture.runAsync(new Task("url3","id3",prices));
+
+        CompletableFuture<Void> allTasks = CompletableFuture.allOf(future,future1,future2);
         try {
-           // latch.await();
-            // If the threads does not complete by 3 seconds the program will continue after 3 seconds
-            latch.await(300, TimeUnit.MILLISECONDS);
+            allTasks.get(300, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (TimeoutException e) {
+            throw new RuntimeException(e);
         }
+
         return prices;
     }
 
     private class Task implements Runnable{
-
-        private final CountDownLatch latch;
         private String url;
         private String productId;
 
         private Set<Integer> prices;
 
-        public Task(String url, String productId, Set<Integer> prices, CountDownLatch latch) {
+        public Task(String url, String productId, Set<Integer> prices) {
             this.url = url;
             this.productId = productId;
             this.prices = prices;
-            this.latch = latch;
         }
 
         @Override
@@ -53,18 +51,15 @@ public class ProductService {
             Random random = new Random();
             random.nextInt();
             try {
-                if(threadNo == 1) {
-                    Thread.sleep(400);
-                }
+                Thread.sleep(500);
+
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             prices.add(random.nextInt());
             //Each thread decrements the count  after the operation is done
-            latch.countDown();
             System.out.println("Test called" + ": " + Thread.currentThread().getName());
         }
     }
 
 }
-
