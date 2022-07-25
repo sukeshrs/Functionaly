@@ -2,6 +2,7 @@ package com.sukesh.functional.function;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MapContainingListOfEntries {
@@ -16,5 +17,17 @@ public class MapContainingListOfEntries {
          * .collect(Collectors.toMap(car -> car.getKey() , car -> car.getValue()));
          */
         return filteredMap;
+    }
+
+    public boolean checkIfMapContainsAllEntries(List<String> carList, Map<String, String> carPriceMap) {
+        Set<String> uniqueEntries = carList.stream().collect(Collectors.toSet());
+        return  carPriceMap.keySet()
+                .containsAll(uniqueEntries);
+    }
+
+    public boolean checkIfMapDoesNotContainANyOfTheEntries(List<String> carList, Map<String, String> map) {
+        return map.keySet()
+                .stream()
+                .noneMatch(key -> carList.contains(key));
     }
 }
