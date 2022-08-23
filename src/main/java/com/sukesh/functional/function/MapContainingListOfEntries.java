@@ -30,4 +30,8 @@ public class MapContainingListOfEntries {
                 .stream()
                 .noneMatch(key -> carList.contains(key));
     }
+
+
+    public void getCarsBelowPriceRange(Map<String, String> map, String s) {
+    }
 }

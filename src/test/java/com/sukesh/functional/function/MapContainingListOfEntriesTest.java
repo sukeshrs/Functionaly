@@ -40,6 +40,11 @@ public class MapContainingListOfEntriesTest {
 
     }
 
+    public void shouldTestTheResultsOfLessThanAThreshold(){
+        classToTest.getCarsBelowPriceRange(createMap(), "60000");
+
+    }
+
     private Map<String, String> createMap() {
         Map<String, String> carPriceMap = new HashMap<String, String>() {
             {
