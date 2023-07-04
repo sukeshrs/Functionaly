@@ -10,6 +10,23 @@ public class GraphDFSTest {
 
     @Test
     public void shouldTestTheGraphTraversal(){
+        Graph graph = createGraph();
+        GraphDFS dfs= new GraphDFS();
+        List<Integer> list = dfs.recursiveDepthFirstSearch(graph);
+        Integer expected = 1;
+        Assert.assertEquals(expected, list.get(0));
+    }
+
+//    @Test
+//    public void shouldTestTheGraphTraversalRecursive(){
+//        Graph graph = createGraph();
+//        GraphDFS dfs= new GraphDFS();
+//        List<Integer> list = dfs.iterativeDepthFirstSearch(graph);
+//        Integer expected = 1;
+//        Assert.assertEquals(expected , list.get(0));
+//    }
+
+    private Graph createGraph() {
         // List of graph edges as per the above diagram
         List<Edge> edges = Arrays.asList(
                 // Notice that node 0 is unconnected
@@ -21,9 +38,6 @@ public class GraphDFSTest {
         int n = 13;
         // build a graph from the given edges
         Graph graph = new Graph(edges, n);
-        GraphDFS dfs= new GraphDFS();
-        List<Integer> list = dfs.depthFirstSearch(graph);
-        Integer expected = 1;
-        Assert.assertEquals(expected, list.get(0));
+        return graph;
     }
 }
